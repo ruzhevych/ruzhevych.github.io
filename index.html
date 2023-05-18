@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Сайт web-студії "Web-DECO"</title>
-	<script type="text/javascript">
+    <head>
+<meta charset="utf-8">
+<title>Сайт web-студії "Web-DECO" </title>
+<script src="js/clock1.js"></script>
+<script>
 function send()
 { 	var valid = true;
 	var elems = document.forms[0].elements;
@@ -22,79 +22,96 @@ function send()
 	if(!valid) {
 		alert('Заповніть всі поля !!!');
 		return false;
-	}
-}
+	} else 
+	{ var r = /^\w+@\w+\.\w{2,4}$/i;
+		if (!r.test(elems[2].value)) {
+			alert('Заповніть вірно E-Mail !!');
+			return false;
+	    } else return true;
+         }
+}	
+
+
+window.onload = function() {
+setInterval(clockPainting, 1000);	
+document.forms[0].onmousemove = function() {	var elems = document.forms[0].elements;
+
+	for(var i=0; i<elems.length; i++)
+		if(elems[i].style.border == '2px solid red')
+			elems[i].style.border='';
+		} 
+
+}	
+
 </script>
     <style>
-      .shadowtext {
-        text-shadow: 1px 3px 2px white, 0 0 1em red;
-        color: #210042;
-        font-size: 2em;
-      }
-    </style>
-</head>
-<body background="images/bg.jpg">
-    <!--========================= Каркас сайта =========================-->
-   <table border="1"  align="center" width="100%"  background="images/bg-3.jpg" cellpadding="10" >
-        <tr>
-              <td colspan="2" height="150" align="right" hspace="5">
-          <img src="images/logo.png" height="180" width="180" align="left" >
-              <font size="5" color="Maroon"><h1 class="shadowtext">Сайт web-студії "Web-DECO"</h1></font>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2"><font size="4"><b>
-                <a href="#">Головна</a>&nbsp;&nbsp;
-                <a href="#">Зареєстровані</a>&nbsp; &nbsp;
-                <a href="#">Фотогалерея</a>&nbsp;&nbsp;
-                <a href="#">Телефонний довідник</a>&nbsp;&nbsp;
-                <a href="#">Статистика</a>
-                </b></font></td>
-        </tr>
-        <tr>
-            <td width="30%" valign="top">
-            <font size="5" color="navy"><h2>Новини</h2></font>
-            <font size="5">
-            <ul>
-              <li><a href="#">Сайт будівельної компанії</a></li>
-              <li><a href="#">Сайт ТМ "Новашкола"</a></li>
-              <li><a href="#">Редизайн сайту classno.com.ua</a></li>
-              <li><a href="#">Розробка CMS для Metro Cash&Carry</a></li>
-              <li><a href="#">Сайт-візитка дизайнера інтерфейсів</a></li>
-              <p align="right"><a href="#">Інші...</a></p>
-            </ul>
-            </font>
-                
-          <hr>
-            <h1 align="center"><font color="green">Реєстрація</font></h1>
-              <form action="forma.php" method="post" onsubmit="return send();">
-              <table align="center" bgcolor="#ccc">
-                <tr>
-                  <td><font color="green">Прізвище</font> : </td>
-                  <td><input type="text" size="10" maxlength="20" name="name2"></td>
-                </tr>
-                <tr>
-                  <td><font color="green">Ім'я</font> : </td>
-                  <td><input type="text" size="10" maxlength="20" name="name1"></td>
-                </tr>
-                <tr>
-                  <td><font color="green">E-Mail</font> : </td>
-                  <td><input type="email" size="10" maxlength="20" name="email"></td>
-                </tr>
-                <tr>
-                  <td><font color="green">Пароль</font> : </td>
-                  <td><input type="password" size="10" maxlength="20" name="password"></td>
-                </tr>
-              </table>
-              <p align="center">
-              <input type="submit" value="Зареєструватися" >
-              <input type="reset" value="Очистити">
-              </p>
-              </form>
-          </hr>
+   .shadowtext {
+    text-shadow: 1px 2px 2px white, 0 0 1em red; /* Параметры тени */
+    color: navy; /* Белый цвет текста */
+    font-size: 3em; /* Размер надписи */
+   }
+  </style>
 
-        </td>
-            <td width="70%" valign="top" background="images/bg.jpg"><font size="5" color="navy">
+</head>
+
+<body background="images/bg.jpg">
+
+<table border="1"  align="center" width="100%"  background="images/bg-3.jpg" cellpadding="10" >
+
+    <tr>
+      <td colspan="2" height="150" align="right" hspace="5">
+		<img src="images/logo.png" height="180" width="180" align="left" >	  
+	  <font size="5" color="Maroon"><h1 class="shadowtext">Сайт web-студії "Web-DECO"</h1></font></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+	  <font size="5"><b><a href="index.php">Головна</a>&nbsp;&nbsp; <a href="input.php">Зареєстровані</a>&nbsp;&nbsp; <a href="log.php">Інформація</a>&nbsp; &nbsp;<a href="foto.php">Фотогалерея</a></b></font></td>
+    </tr>
+    <tr>
+      <td width="30%" valign="top" background="images/bg.jpg">
+<center><canvas id="canvas" height="120" width="120"></canvas></center>
+<br>
+<hr>
+	  <font size="5" color="navy"><h2>Новини</h2></font>
+      <font size="5" ><ul>
+      <li><a href="#">Сайт будіівельної компанії </a></li>
+      <li><a href="#">Сайт ТМ "Новашкола" </a></li>
+      <li><a href="#">Редизайн сайту classno.com.ua</a></li>
+      <li><a href="#">Розробка CMS для Metro Cash&Carry</a></li>
+      <li><a href="#">Сайт-візитка дизайнера інтерфейсів</a></li><br>
+      <p align="right"><a href="#">Інші...</a></p>
+      </ul>
+      </font>
+ 	  <hr>
+<H1 align="center"><font color="green">Реєстрація</font></H1>
+ <form action="forma.php" method="post" onsubmit="return send();">
+<TABLE align="center" bgcolor="#ccc">
+<TR>
+<TD><font color="green">Прізвище</font>: </TD>
+<TD><input type="text" size="10" maxlength="20" name="name2"> </TD>
+</TR>
+<TR>
+<TD><font color="green">Ім'я</font> :  </TD>
+<TD><input type="text" size="10" maxlength="20" name="name1"> </TD>
+</TR>
+<TR>
+<TD><font color="green">E-Mail</font> : </TD>
+<TD><input type="email" size="10" maxlength="20" name="email"></TD>
+</TR>
+<TR>
+<TD><font color="green">Пароль</font> : </TD>
+<TD><input type="password" size="10" maxlength="20" name="password"></TD>
+</TR>
+</TABLE>
+
+<p align="center"> 
+<input type="submit" value="Зареєструватись" >
+<input type="reset" value="Очистити">
+</p>
+ </form> 
+<hr>
+
+      <td width="70%" valign="top" background="images/bg.jpg"><font size="5" color="navy">
 <!-- ========================================================================================= -->	  
 	  <h2>Зробити сайт з нами легко</h2></font>
  <font size="5"><p align="justify"><b>Створення власного сайту</b> - це не тільки прерогатива великого бізнесу. Інтернет відкриває широкі можливості в першу чергу для малого бізнесу, для приватної підприємницької ініціативи. Адже, при започаткуванні власної справи розробка сайту потребує зовсім невеликих інвестицій, у порівнянні з іншими видами витрат. Створити сайт, в більшості випадків - це значно дешевше, наприклад, ніж оренда офісу, чи витрати на зарплату працівників.</p>
@@ -131,13 +148,15 @@ function send()
 <p> <img src="images/graphic.jpg" height="140" width="140" align="left"  hspace="15" vspace="5"> Важливим напрямком діяльності нашої вебстудії є також технічна і інформаційна підтримка сайтів. Адже мало просто зробити сайт. Щоб зацікавити відвідувача, створений сайт має підтримувати свій контент у свіжому і актуальному стані, а також в разі потреби оновлювати свої сервіси і функціональний зміст. Крім того, не слід забувати і про пошукову оптимізацію сайту (SEO), завдяки якій сайт отримує гарне взаєморозуміння із провідними пошуковими системами. Відвідувачі, які прийшли на сайт з пошукових машин, є для сайту найціннішими. Вони вже сформулювали свої інтереси і намагаються знайти інформацію на потрібну для них тему. Саме тому дуже важливо направити на сайт відвідувачів з пошукових систем, які задають цільові фрази, що стосуються Вашого бізнесу. Тож задача пошукової оптимізації - просування сайту в верхні рядки результатів пошукових систем за ключовими словами, які шукає користувач. Це дає гарну можливість привернути увагу до сайту з боку великої кількості зацікавлених відвідувачів.</p>
     
 <p>Звертайтесь до веб-студії Web-DECO, і ми з радістю застосуємо свої здібності і досвід для вирішення Ваших задач! Ми можемо створити сайт, який стане для Вас вдалою інвестицією.</p></p></font> 
-<!-- ===================================================================================================================== -->          </td>
-        </tr>
-        <tr>
-            <td background="images/bg-3.jpg" colspan="2" valign="middle" height="90"><font size="5">Сайт розробив "Ружевич Веніамін"</font></td>
-        </td>
-        </tr>
-    </table>
-    <!--================================================================-->
-</body>
+<!-- ===================================================================================================================== -->
+</td>
+    </tr>
+    <tr>
+      <td background="images/bg-3.jpg" colspan="2" valign="middle" height="90"><font size="5">Сайт розробив "Ружевич Веніамін"</font></td>
+
+    </tr>
+
+</table>
+
+ </body>
 </html>
